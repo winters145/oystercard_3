@@ -1,9 +1,12 @@
 require_relative '../lib/oystercard.rb'
 
 describe Oystercard do
-  #freshly initialized
-  #has balance of 0 by default
-
+  describe "#top_up" do  
+    it "should add money to the oyster card" do
+      oystercard = Oystercard.new
+      expect(oystercard).to respond_to(:top_up).with(1).argument
+    end
+  end
 end
 
 
