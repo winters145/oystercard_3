@@ -16,12 +16,12 @@ describe Oystercard do
     end
   end
 
-  describe "#deduct" do
-    it "should deduct the balance by the amount given" do
-      subject.top_up(50)
-      expect{ subject.deduct(40) }.to change{ subject.balance }.by -40
-    end
-  end
+  # describe "#deduct" do
+  #   it "should deduct the balance by the amount given" do
+  #     subject.top_up(50)
+  #     expect{ subject.deduct(40) }.to change{ subject.balance }.by -40
+  #   end
+  # end
 
   describe "#touch_in" do
     it "should change the in_journey status of the card to true" do
@@ -41,10 +41,10 @@ describe Oystercard do
       subject.touch_out
       expect( subject.in_journey ).to eq false
     end
+    it "should deduct the MINIMUM_BALANCE_FOR_JOURNEY when user touches out" do
+      subject.top_up(50)
+      subject.touch_in
+      expect { subject.touch_out }.to change{ subject.balance }.by(- Oystercard::MINIMUM_BALANCE_FOR_JOURNEY)
+    end
   end
 end
-
-# Notes on Stack Trace:
-# NameError - unitialized constant Oystercard
-# ./spec/oystercard_spec
-# rb:1:in
