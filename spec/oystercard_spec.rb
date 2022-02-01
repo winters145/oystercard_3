@@ -18,26 +18,28 @@ describe Oystercard do
 
   describe "#deduct" do
     it "should deduct the balance by the amount given" do
-    subject.top_up(50)
-    expect{ subject.deduct(40) }.to change{ subject.balance }.by -40
+      subject.top_up(50)
+      expect{ subject.deduct(40) }.to change{ subject.balance }.by -40
     end
   end
 
   describe "#touch_in" do
     it "should change the in_journey status of the card to true" do
-    subject.top_up(50)
-    subject.touch_in
-    expect( subject.in_journey ).to eq true
+      subject.top_up(50)
+      subject.touch_in
+      expect( subject.in_journey ).to eq true
+    end
+
+    it "should raise an error if the balance is less than £1 when trying to touch_in" do
+      expect { subject.touch_in }.to raise_error "Touch in failed: Insufficient balance for journey"
     end
   end
-  # describe "#in_journey?" do
-  #   it "should test whether user is in journey (touched in) or not (touched out)" do 
 
   describe "#touch_out" do
     it "should change the in_journey status of the card to false" do
-    subject.top_up(50)
-    subject.touch_out
-    expect( subject.in_journey ).to eq false
+      subject.top_up(50)
+      subject.touch_out
+      expect( subject.in_journey ).to eq false
     end
   end
 end
