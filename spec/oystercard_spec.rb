@@ -22,6 +22,24 @@ describe Oystercard do
     expect{ subject.deduct(40) }.to change{ subject.balance }.by -40
     end
   end
+
+  describe "#touch_in" do
+    it "should change the in_journey status of the card to true" do
+    subject.top_up(50)
+    subject.touch_in
+    expect( subject.in_journey ).to eq true
+    end
+  end
+  # describe "#in_journey?" do
+  #   it "should test whether user is in journey (touched in) or not (touched out)" do 
+
+  describe "#touch_out" do
+    it "should change the in_journey status of the card to false" do
+    subject.top_up(50)
+    subject.touch_out
+    expect( subject.in_journey ).to eq false
+    end
+  end
 end
 
 # Notes on Stack Trace:
