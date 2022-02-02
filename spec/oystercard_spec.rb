@@ -10,9 +10,9 @@ describe Oystercard do
     it 'has a balance of zero' do
       expect(card.balance).to eq(0)
     end
-    it 'has an empty list of journeys' do 
-      expect(card.list_of_journeys).to be_empty
-    end
+    # it 'has an empty list of journeys' do 
+    #   expect(card.list_of_journeys).to be_empty
+    # end
   end
 
   describe '#top_up' do
@@ -58,10 +58,10 @@ describe Oystercard do
         card.touch_out(exit_station)
         expect(card.entry_station).to eq nil
       end
-      it 'should save the journey to the list_of_journeys' do
-        card.touch_out(exit_station)
-        expect(card.list_of_journeys).to include journey
-      end
+      # it 'should save the journey to the list_of_journeys' do
+      #   card.touch_out(exit_station)
+      #   expect(card.list_of_journeys).to include journey
+      # end
     end
 
     describe '#in_journey?' do
